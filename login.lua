@@ -8,6 +8,7 @@ local composer = require("composer")
 local scene = composer.newScene()
 
 local function goToMenu()
+	composer.removeScene("login")
 	composer.gotoScene("menu")
 end
 
@@ -15,8 +16,8 @@ function scene:create( event )
  
     local sceneGroup = self.view
     
-    display.setDefault("background", 213/255, 236/255, 237/255)
-
+    local background = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
+    background.fill = {213/255, 236/255, 237/255}
 
 	local loginKeysImages = {
 		'images/a.png',

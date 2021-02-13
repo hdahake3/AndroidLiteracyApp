@@ -1,11 +1,24 @@
 local composer = require("composer")
 local scene = composer.newScene()
 
+local function goToCoin()
+	composer.removeScene("menu")
+	composer.gotoScene("coin")
+end
+
+local function goToLogin()
+	composer.removeScene("menu")
+	composer.gotoScene("login")
+end
+
 function scene:create( event )
 
 	local sceneGroup = self.view
 
 	local curScene = display.newGroup()
+
+	local background = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
+    background.fill = {213/255, 236/255, 237/255}
 
 	local secondGradeBackground = display.newImage(curScene, "images/second_categories.png", display.contentCenterX + 30, display.contentCenterY)
 	secondGradeBackground.height = display.actualContentHeight
@@ -23,6 +36,9 @@ function scene:create( event )
 	local bankButton = display.newImage(curScene, "images/bank.png", display.screenOriginX + 30, curScene.y + 230)
 	local puzzleButton = display.newImage(curScene, "images/puzzle.png", display.screenOriginX + 30, curScene.y + 290)
 
+	bankButton:addEventListener("tap", goToCoin)
+	backButton:addEventListener("tap", goToLogin)
+	homeButton:addEventListener("tap", goToLogin)
 
 	sceneGroup:insert(curScene)
 end
