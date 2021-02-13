@@ -5,3 +5,4 @@ Authors: Robert DuPre, Harshal Dahake, Kamal Feracho, Daeseon Park,  Avinash Vem
 
 This project is an Android implementation of a web based app for the nonprofit organization Hear A Tale.
 We are using Solar2D studio by Corona Labs as an android/tablet application emulator.
+Main project found in file "main.lua"
