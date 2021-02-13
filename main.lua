@@ -50,18 +50,37 @@ local loginKeysImages = {
 
 local loginKeys = display.newGroup()
 
-local leftBound = display.actualContentWidth * 0.1
-print(display.actualContentWidth)
+local loginArray = {0, 0, 0, 0, 0}
 
-local spacing = (display.actualContentWidth * 0.8) / 9
+local loginDeleteButtonEvent = function(event)
+	loginArray[event.target.id] = 0
+	display.remove(event.target)
+end
+
+
+local loginButtonEvent = function(event)
+	for i = 1, #loginArray, 1 do 
+		if loginArray[i] == 0 then
+			local curImage = display.newImage(loginKeysImages[event.target.id], 40 + (i - 1) * 65, loginKeys.y + 250)
+			curImage:scale(0.07, 0.07)
+			curImage.width = curImage.height
+			curImage.id = i
+			loginArray[i] = 1
+			curImage:addEventListener("tap", loginDeleteButtonEvent)
+			break
+		end
+	end
+
+    print(event.target.id)
+end
 
 for i = 1, #loginKeysImages, 1 do 
 	
 	local curImage = display.newImage(loginKeys, loginKeysImages[i], 32 + ((i - 1) % 9) * 52, 32 + math.floor((i - 1) / 9) * 52)
 	curImage:scale(0.07, 0.07)
 	curImage.width = curImage.height
-	--curImage.x = (i - 1) * 60
-	--curImage.y = display.contentCenterY
+	curImage.id = i
+	curImage:addEventListener("tap", loginButtonEvent)
 
 end
 
@@ -75,5 +94,8 @@ for i = 1, 5, 1 do
 	curImage:scale(0.3, 0.3)
 end
 
+
+
 local loginButton = display.newImage(loginKeys, 'images/login.png', loginKeys.x + 400, loginKeys.y + 220)
 loginButton:scale(0.3, 0.3)
+
