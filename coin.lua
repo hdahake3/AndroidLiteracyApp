@@ -1,36 +1,30 @@
 local composer = require("composer")
 local scene = composer.newScene()
-<<<<<<< HEAD
 
-=======
---function used to return to login screen
->>>>>>> kferacho3
 local function goToLogin()
 	composer.gotoScene("login")
 end
 
-<<<<<<< HEAD
-=======
---function used to open up menu
->>>>>>> kferacho3
 local function goToMenu()
 	composer.gotoScene("menu")
 end
 
-<<<<<<< HEAD
-=======
---function used for coin interaction
->>>>>>> kferacho3
+local function goToZoo()
+	composer.gotoScene("zoo")
+end
+
 function scene:create( event )
 
 	local sceneGroup = self.view
 
 	local curScene = display.newGroup()
 
-	display.setDefault("background", 110/255, 199/255, 212/255)
 
-	local secondGradeBackground = display.newRect(curScene, display.contentCenterX + 30, display.contentCenterY, display.actualContentWidth - 60, display.actualContentHeight)
-	secondGradeBackground.fill = {213/255, 236/255, 237/255}
+	local background = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
+    background.fill = {110/255, 199/255, 212/255}
+
+	local secondBackground = display.newRect(curScene, display.contentCenterX + 30, display.contentCenterY, display.actualContentWidth - 60, display.actualContentHeight)
+	secondBackground.fill = {213/255, 236/255, 237/255}
 
 	local backButton = display.newImage(curScene, "images/back.png", display.screenOriginX + 30, curScene.y + 30)
 	local homeButton = display.newImage(curScene, "images/home.png", display.screenOriginX + 30, curScene.y + 90)
@@ -39,6 +33,7 @@ function scene:create( event )
 	
 	backButton:addEventListener("tap", goToMenu)
 	homeButton:addEventListener("tap", goToLogin)
+	zooButton:addEventListener("tap", goToZoo)
 
 	for i = 0, 5, 1 do
 		local goldCoin = display.newImage(curScene, "images/coin_gold.png", curScene.x + 230, curScene.y + 200 - i * 20)
