@@ -25,10 +25,10 @@ function scene:create( event )
 	secondGradeBackground.width = display.actualContentWidth - 60
 
 
-	local consonantButton = display.newImage(curScene, "images/second_consonants.png", curScene.x + 290, curScene.y + 120)
+	local consonantButton = display.newImage(curScene, "images/second_consonants.png", curScene.x + 285, curScene.y + 120)
 	consonantButton:scale(0.4, 0.4)
 
-	local vowelButton = display.newImage(curScene, "images/second_vowels.png", curScene.x + 290, curScene.y + 230)
+	local vowelButton = display.newImage(curScene, "images/second_vowels.png", curScene.x + 285, curScene.y + 230)
 	vowelButton:scale(0.4, 0.4)
 
 	local backButton = display.newImage(curScene, "images/back.png", display.screenOriginX + 30, curScene.y + 30)
