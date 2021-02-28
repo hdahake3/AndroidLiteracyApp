@@ -1,26 +1,14 @@
 local composer = require("composer")
 local scene = composer.newScene()
-<<<<<<< HEAD
 
-=======
---function used to return to login screen
->>>>>>> kferacho3
 local function goToLogin()
 	composer.gotoScene("login")
 end
 
-<<<<<<< HEAD
-=======
---function used to open up menu
->>>>>>> kferacho3
 local function goToMenu()
 	composer.gotoScene("menu")
 end
 
-<<<<<<< HEAD
-=======
---function used for coin interaction
->>>>>>> kferacho3
 function scene:create( event )
 
 	local sceneGroup = self.view
