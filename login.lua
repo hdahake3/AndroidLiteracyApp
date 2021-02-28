@@ -7,7 +7,7 @@ function scene:create( event )
 	local loginKeysImages = {
 		'images/a.png',
 		'images/b.png',
-@ -60,6 +60,7 @@ function scene:create( event )
+function scene:create( event )
 
 	local loginKeys = display.newGroup()
 
@@ -15,7 +15,7 @@ function scene:create( event )
 	local loginArray = {0, 0, 0, 0, 0}
 
 	local loginDeleteButtonEvent = function(event)
-@ -67,7 +68,7 @@ function scene:create( event )
+function scene:create( event )
 		display.remove(event.target)
 	end
 
@@ -24,7 +24,7 @@ function scene:create( event )
 	local loginButtonEvent = function(event)
 		for i = 1, #loginArray, 1 do 
 			if loginArray[i] == 0 then
-@ -84,6 +85,7 @@ function scene:create( event )
+function scene:create( event )
 	    print(event.target.id)
 	end
 
@@ -32,7 +32,7 @@ function scene:create( event )
 	for i = 1, #loginKeysImages, 1 do 
 		
 		local curImage = display.newImage(loginKeys, loginKeysImages[i], 32 + ((i - 1) % 9) * 52, 32 + math.floor((i - 1) / 9) * 52)
-@ -99,12 +101,13 @@ function scene:create( event )
+unction scene:create( event )
 	local parentTeacher = display.newImage(loginKeys, 'images/parent_teacher.png', display.contentCenterX, loginKeys.y - 45)
 	parentTeacher:scale(0.3, 0.3)
 
