@@ -10,7 +10,7 @@ local function goToMenu()
 end
 
 local function goToZoo()
-	composer.removeScene("coin")
+	--composer.removeScene("coin")
 	composer.gotoScene("zoo")
 end
 
