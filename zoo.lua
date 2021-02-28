@@ -9,6 +9,10 @@ local function goToMenu()
 	composer.gotoScene("menu")
 end
 
+local function goToCoin()
+	composer.gotoScene("coin")
+end
+
 function scene:create( event )
 
 	local sceneGroup = self.view
@@ -26,7 +30,8 @@ function scene:create( event )
 	--zooButton:scale(0.90, 0.90)
 	
 	backButton:addEventListener("tap", goToMenu)
-	homeButton:addEventListener("tap", goToLogin)
+    homeButton:addEventListener("tap", goToLogin)
+    bankButton:addEventListener("tap", goToCoin)
 
 
 	
