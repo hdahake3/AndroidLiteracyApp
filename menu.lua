@@ -24,7 +24,7 @@ function scene:create( event )
 	local background = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
     background.fill = {213/255, 236/255, 237/255}
 
-function scene:create( event )
+@ -25,17 +25,19 @@ function scene:create( event )
 	secondGradeBackground.width = display.actualContentWidth - 60
 
 
