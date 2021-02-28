@@ -23,7 +23,7 @@ function scene:create( event )
 	local backButton = display.newImage(curScene, "images/back.png", display.screenOriginX + 30, curScene.y + 30)
 	local homeButton = display.newImage(curScene, "images/home.png", display.screenOriginX + 30, curScene.y + 90)
 	local bankButton = display.newImage(curScene, "images/bank.png", display.screenOriginX + 30, curScene.y + 290)
-	zooButton:scale(0.90, 0.90)
+	--zooButton:scale(0.90, 0.90)
 	
 	backButton:addEventListener("tap", goToMenu)
 	homeButton:addEventListener("tap", goToLogin)
