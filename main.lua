@@ -1,5 +1,5 @@
 local composer = require("composer")
 
-composer.gotoScene("zoo")
+composer.gotoScene("login")
 
 
