@@ -9,6 +9,9 @@ local function goToMenu()
 	composer.gotoScene("menu")
 end
 
+local function goToZoo()
+	composer.gotoScene("zoo")
+end
 function scene:create( event )
 
 	local sceneGroup = self.view
@@ -27,6 +30,7 @@ function scene:create( event )
 	
 	backButton:addEventListener("tap", goToMenu)
 	homeButton:addEventListener("tap", goToLogin)
+	zooButton:addEventListener("tap", goToZoo)
 
 	for i = 0, 5, 1 do
 		local goldCoin = display.newImage(curScene, "images/coin_gold.png", curScene.x + 230, curScene.y + 200 - i * 20)
