@@ -10,10 +10,8 @@ local function goToMenu()
 end
 
 local function goToZoo()
-	composer.removeScene("coin")
 	composer.gotoScene("zoo")
 end
-
 function scene:create( event )
 
 	local sceneGroup = self.view
