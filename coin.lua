@@ -1,5 +1,6 @@
 local composer = require("composer")
 local scene = composer.newScene()
+
 local function goToLogin()
 	composer.gotoScene("login")
 end
