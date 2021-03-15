@@ -24,12 +24,25 @@ function scene:create( event )
 	secondGradeBackground.height = display.actualContentHeight
 	secondGradeBackground.width = display.actualContentWidth - 60
 
+	local consonantSound = audio.loadSound("sounds/consonants.mp3")
+
+	local function playConsonantSound()
+		audio.play(consonantSound)
+	end
 
 	local consonantButton = display.newImage(curScene, "images/second_consonants.png", curScene.x + 285, curScene.y + 120)
 	consonantButton:scale(0.4, 0.4)
+	consonantButton:addEventListener("tap", playConsonantSound)
+
+	local vowelSound = audio.loadSound("sounds/vowels.mp3")
+
+	local function playVowelSound()
+		audio.play(vowelSound)
+	end
 
 	local vowelButton = display.newImage(curScene, "images/second_vowels.png", curScene.x + 285, curScene.y + 230)
 	vowelButton:scale(0.4, 0.4)
+	vowelButton:addEventListener("tap", playVowelSound)
 
 	local backButton = display.newImage(curScene, "images/back.png", display.screenOriginX + 30, curScene.y + 30)
 	local homeButton = display.newImage(curScene, "images/home.png", display.screenOriginX + 30, curScene.y + 90)
