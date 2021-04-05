@@ -42,7 +42,45 @@ function scene:create(event)
 
 	soundImages = {
 		{"ape", "make", "cake"},
-		{"bat", "cat", "ax"}
+		{"bat", "cat", "ax"},
+		{"sofa", "zebra", "afraid"},
+		{"ant", "man", "van"},
+		{"bare", "mare", "hare"},
+		{"saw", "hawk", "paws"},
+		{"boy", "bubble", "boat"},
+		{"blow", "blue", "blush"},
+		{"cat", "canary", "cake"},
+		{"chest", "cheese", "chisel"},
+		{"kick", "truck", "backpack"},
+		{"crab", "cry", "croc"},
+		{"bird", "cold", "friend"},
+		{"me", "he", "we"},
+		{"camel", "oven", "kitten"},
+		{"head", "bear", "pears"},
+		{"veil", "eight", "weigh"},
+		{"net", "jet", "yeti"},
+		{"flew", "blew", "chew"},
+		{"scarf", "thief", "chef"},
+		{"frog", "fry", "fro"},
+		{"goose", "goat", "gold"},
+		{"giraffe", "gingerbread man", "fridge"},
+		{"high", "right", "eight"},
+		{"gnaw", "gnome", "gnat"},
+		{"hug", "hardhat", "hide"},
+		{"ice", "five", "lion"},
+		{"mittens", "hit", "fish"},
+		{"taxi", "yeti", "skis"},
+		{"high", "thigh", "right"},
+		{"milk", "lily", "tilt"},
+		{"kind", "find", "blind"},
+		{"bird", "girl", "shirt"},
+		{"key", "kayak", "kangaroo"},
+		{"knot", "knee", "knit"},
+		{"owl", "goal", "sail"},
+		{"poodle", "whale", "tricycle"},
+		{"colt", "belt", "halt"},
+		{"swim", "clam", "storm"},
+		{"ump", "chimp", "camp"}
 	}
 
 	for i = 1, 3, 1 do
@@ -52,6 +90,10 @@ function scene:create(event)
 		soundImage.height = soundImage.width
 
 		local soundImageText = display.newText(curScene, soundImages[event.params.soundID][i], soundImage.x, soundImage.y + soundImage.height / 2 + 15, "fonts/ComicNeue-Bold.ttf", 30, "center")
+		while soundImageText.width > soundImage.width do 
+			soundImageText.size = soundImageText.size - 1
+		end
+
 		soundImageText:setFillColor(black)
 	end
 
