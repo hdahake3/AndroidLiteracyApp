@@ -20,43 +20,47 @@ function scene:create( event )
     background.fill = {213/255, 236/255, 237/255}
 
 	local loginKeysImages = {
-		'images/a.png',
-		'images/b.png',
-		'images/c.png',
-		'images/d.png',
-		'images/e.png',
-		'images/f.png',
-		'images/g.png',
-		'images/h.png',
-		'images/i.png',
-		'images/j.png',
-		'images/k.png',
-		'images/l.png',
-		'images/m.png',
-		'images/n.png',
-		'images/o.png',
-		'images/p.png',
-		'images/q.png',
-		'images/r.png',
-		'images/s.png',
-		'images/t.png',
-		'images/u.png',
-		'images/v.png',
-		'images/w.png',
-		'images/x.png',
-		'images/y.png',
-		'images/z.png',
-		'images/0.png',
-		'images/1.png',
-		'images/2.png',
-		'images/3.png',
-		'images/4.png',
-		'images/5.png',
-		'images/6.png',
-		'images/7.png',
-		'images/8.png',
-		'images/9.png'
+		'a',
+		'b',
+		'c',
+		'd',
+		'e',
+		'f',
+		'g',
+		'h',
+		'i',
+		'j',
+		'k',
+		'l',
+		'm',
+		'n',
+		'o',
+		'p',
+		'q',
+		'r',
+		's',
+		't',
+		'u',
+		'v',
+		'w',
+		'x',
+		'y',
+		'z',
+		'0',
+		'1',
+		'2',
+		'3',
+		'4',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9'
 	}
+
+	for i = 1, #loginKeysImages, 1 do
+		loginKeysImages[i] = "images/" .. loginKeysImages[i] .. ".png"
+	end
 
 	local loginKeys = display.newGroup()
 
@@ -71,9 +75,8 @@ function scene:create( event )
 	local loginButtonEvent = function(event)
 		for i = 1, #loginArray, 1 do 
 			if loginArray[i] == 0 then
-				local curImage = display.newImage(loginKeys, loginKeysImages[event.target.id], 40 + (i - 1) * 65, loginKeys.y + 220)
-				curImage:scale(0.07, 0.07)
-				curImage.width = curImage.height
+				local curImage = display.newRoundedRect(loginKeys, 40 + (i - 1) * 65, loginKeys.y + 220, 47.6, 47.6, 4, 4)
+				curImage.fill = {type = "image", filename = loginKeysImages[event.target.id]}
 				curImage.id = i
 				loginArray[i] = 1
 				curImage:addEventListener("tap", loginDeleteButtonEvent)
@@ -86,9 +89,8 @@ function scene:create( event )
 
 	for i = 1, #loginKeysImages, 1 do 
 		
-		local curImage = display.newImage(loginKeys, loginKeysImages[i], 32 + ((i - 1) % 9) * 52, 32 + math.floor((i - 1) / 9) * 52)
-		curImage:scale(0.07, 0.07)
-		curImage.width = curImage.height
+		local curImage = display.newRoundedRect(loginKeys, 32 + ((i - 1) % 9) * 52, 32 + math.floor((i - 1) / 9) * 52, 47.6, 47.6, 4)
+		curImage.fill = {type = "image", filename = loginKeysImages[i]}
 		curImage.id = i
 		curImage:addEventListener("tap", loginButtonEvent)
 

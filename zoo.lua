@@ -66,16 +66,22 @@ function scene:create( event )
 	curScene:insert(tailCoins)
 
 	local segmentedAnimalImages = {
-		{"images/bug-head.png", "images/bug-middle.png", "images/bug-tail.png"},
-		{"images/ant-head.png", "images/ant-middle.png", "images/ant-tail.png"},
-		{"images/cat-head.png", "images/cat-middle.png", "images/cat-tail.png"},
-		{"images/cub-head.png", "images/cub-middle.png", "images/cub-tail.png"},
-		{"images/dog-head.png", "images/dog-middle.png", "images/dog-tail.png"},
-		{"images/elk-head.png", "images/elk-middle.png", "images/elk-tail.png"},
-		{"images/bat-head.png", "images/bat-middle.png", "images/bat-tail.png"},
-		{"images/aerialist-head.png", "images/aerialist-middle.png", "images/aerialist-tail.png"},
-		{"images/clown-head.png", "images/clown-middle.png", "images/clown-tail.png"}
+		{"bug-head", "bug-middle", "bug-tail"},
+		{"ant-head", "ant-middle", "ant-tail"},
+		{"cat-head", "cat-middle", "cat-tail"},
+		{"cub-head", "cub-middle", "cub-tail"},
+		{"dog-head", "dog-middle", "dog-tail"},
+		{"elk-head", "elk-middle", "elk-tail"},
+		{"bat-head", "bat-middle", "bat-tail"},
+		{"aerialist-head", "aerialist-middle", "aerialist-tail"},
+		{"clown-head", "clown-middle", "clown-tail"}
 	}
+
+	for i = 1, #segmentedAnimalImages, 1 do
+		for j = 1, 3, 1 do
+			segmentedAnimalImages[i][j] = "images/" .. segmentedAnimalImages[i][j] .. ".png"
+		end
+	end
 
 	local currentAnimal = {nil, nil, nil}
 

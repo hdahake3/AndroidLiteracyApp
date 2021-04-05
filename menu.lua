@@ -11,23 +11,47 @@ local function goToLogin()
 	composer.gotoScene("login")
 end
 
+local function goToAllSounds()
+	composer.removeScene("menu")
+	composer.gotoScene("all_sounds")
+end
+
+local function goToConsonantsMenu()
+	composer.removeScene("menu")
+	composer.gotoScene("consonants_menu")
+end
+
+local function goToVowelsMenu()
+	composer.removeScene("menu")
+	composer.gotoScene("vowels_menu")
+end
+
 function scene:create( event )
 
 	local sceneGroup = self.view
 
 	local curScene = display.newGroup()
 
-	local background = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
+	local background = display.newRect(curScene, display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight)
     background.fill = {213/255, 236/255, 237/255}
 
+    local secondBackground = display.newRect(curScene, display.contentCenterX + 30, display.contentCenterY, display.actualContentWidth - 60, display.actualContentHeight)
+    secondBackground.fill = {1, 1, 1}
+
 	local secondGradeBackground = display.newImage(curScene, "images/second_categories.png", display.contentCenterX + 30, display.contentCenterY)
-	secondGradeBackground.height = display.actualContentHeight
+	secondGradeBackground.height = secondGradeBackground.height * ((display.actualContentWidth - 60) / secondGradeBackground.width)
 	secondGradeBackground.width = display.actualContentWidth - 60
+
+	if secondGradeBackground.height > display.actualContentHeight then 
+		secondGradeBackground.width = secondGradeBackground.width * (display.actualContentHeight / secondGradeBackground.height)
+		secondGradeBackground.height = display.actualContentHeight
+	end
 
 	local consonantSound = audio.loadSound("sounds/consonants.mp3")
 
 	local function playConsonantSound()
 		audio.play(consonantSound)
+		goToConsonantsMenu()
 	end
 
 	local consonantButton = display.newImage(curScene, "images/second_consonants.png", curScene.x + 285, curScene.y + 120)
@@ -38,6 +62,7 @@ function scene:create( event )
 
 	local function playVowelSound()
 		audio.play(vowelSound)
+		goToVowelsMenu()
 	end
 
 	local vowelButton = display.newImage(curScene, "images/second_vowels.png", curScene.x + 285, curScene.y + 230)
@@ -52,6 +77,7 @@ function scene:create( event )
 	bankButton:addEventListener("tap", goToCoin)
 	backButton:addEventListener("tap", goToLogin)
 	homeButton:addEventListener("tap", goToLogin)
+	puzzleButton:addEventListener("tap", goToAllSounds)
 
 	sceneGroup:insert(curScene)
 end
