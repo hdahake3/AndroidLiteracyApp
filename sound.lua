@@ -16,6 +16,11 @@ local function goToAllSounds()
 	composer.gotoScene("all_sounds")
 end
 
+local function goToSound(event)
+	composer.removeScene("sound")
+	composer.gotoScene("sound", {params = {soundID = event.target.soundID}})
+end
+
 function scene:create(event)
 	local sceneGroup = self.view
 
@@ -37,54 +42,18 @@ function scene:create(event)
 
 
 	local leftScroll = display.newImage(curScene, "images/back.png", soundText.x - display.actualContentWidth * (1 / 4), soundText.y + 7)
+	leftScroll.soundID = (event.params.soundID - 2) % 155 + 1
+	leftScroll:addEventListener("tap", goToSound)
+
 	local rightScroll = display.newImage(curScene, "images/back.png", soundText.x + display.actualContentWidth * (1 / 4), soundText.y + 7)
 	rightScroll.rotation = 180
+	rightScroll.soundID = event.params.soundID % 155 + 1
+	rightScroll:addEventListener("tap", goToSound)
 
-	soundImages = {
-		{"ape", "make", "cake"},
-		{"bat", "cat", "ax"},
-		{"sofa", "zebra", "afraid"},
-		{"ant", "man", "van"},
-		{"bare", "mare", "hare"},
-		{"saw", "hawk", "paws"},
-		{"boy", "bubble", "boat"},
-		{"blow", "blue", "blush"},
-		{"cat", "canary", "cake"},
-		{"chest", "cheese", "chisel"},
-		{"kick", "truck", "backpack"},
-		{"crab", "cry", "croc"},
-		{"bird", "cold", "friend"},
-		{"me", "he", "we"},
-		{"camel", "oven", "kitten"},
-		{"head", "bear", "pears"},
-		{"veil", "eight", "weigh"},
-		{"net", "jet", "yeti"},
-		{"flew", "blew", "chew"},
-		{"scarf", "thief", "chef"},
-		{"frog", "fry", "fro"},
-		{"goose", "goat", "gold"},
-		{"giraffe", "gingerbread man", "fridge"},
-		{"high", "right", "eight"},
-		{"gnaw", "gnome", "gnat"},
-		{"hug", "hardhat", "hide"},
-		{"ice", "five", "lion"},
-		{"mittens", "hit", "fish"},
-		{"taxi", "yeti", "skis"},
-		{"high", "thigh", "right"},
-		{"milk", "lily", "tilt"},
-		{"kind", "find", "blind"},
-		{"bird", "girl", "shirt"},
-		{"key", "kayak", "kangaroo"},
-		{"knot", "knee", "knit"},
-		{"owl", "goal", "sail"},
-		{"poodle", "whale", "tricycle"},
-		{"colt", "belt", "halt"},
-		{"swim", "clam", "storm"},
-		{"ump", "chimp", "camp"}
-	}
+	soundImages = composer.getVariable("sounds_table")
 
 	for i = 1, 3, 1 do
-		local soundImage = display.newImage(curScene, "images/" .. soundImages[event.params.soundID][i] .. ".png", display.contentCenterX + 30 + i * display.actualContentWidth * (1 / 4) - display.actualContentWidth * (1 / 2), 
+		local soundImage = display.newImage(curScene, "images/sound_images/" .. soundImages[event.params.soundID][i] .. ".png", display.contentCenterX + 30 + i * display.actualContentWidth * (1 / 4) - display.actualContentWidth * (1 / 2), 
 							(display.contentCenterY - display.safeScreenOriginY) / (3 / 4))
 		soundImage.width = display.actualContentWidth * (1 / 4)
 		soundImage.height = soundImage.width

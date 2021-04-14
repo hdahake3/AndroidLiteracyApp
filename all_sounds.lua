@@ -40,63 +40,7 @@ function scene:create(event)
 	    }
 	)
 
-	letters = {
-		"a", "a", "a", "an", "ar", "aw", 
-		"b", "bl", 
-		"c", "ch", "ck", "cr", 
-		"d", 
-		"e", "e", "ea", "ei", "et", "ew", 
-		"f", "fr", 
-		"g", "g", "gh", "gn",
-		"h", 
-		"i", "i", "i", "igh", "il", "ind", "ir",
-		"k", "kn", 
-		"l", "le", "lt",
-		"m", "mp",
-		"n", "ng", "nt",
-		"o", "o", "oi", "oo", "or", "ost", "ou", "ow",
-		"p", "ph", "pl",  
-		"q",
-		"r",
-		"s", "sc", "scr", "sh", "sk", "sm", "sp", "spr", "st", "sw",
-		"t", "th", "th",
-		"u", "u", "ur", 
-		"w", "wr", 
-		"x",
-		"y",
-		"ey",
-		"z",
-		"a", "a", "ai", "ar", "au", "ay", 
-		"b", "br",
-		"c", "ch", "cl",
-		"d", "dr",
-		"e", "ea", "ee", "er", "et",
-		"f", "fl", "ft",
-		"g", "gh", "gl", "gr",
-		"h",   
-		"i", "i", "ie", "il", "ild", "ion",
-		"j",
-		"k",
-		"l", "ld", "lf",
-		"m", "mb",
-		"n", "nd", "nk", 
-		"o", "o", "oa", "old", "oo", "or", "ost", "ow", "oy",
-		"p", "ph", "pr", 
-		"r", 
-		"s", "s", "sc", "sh", "sk", "sl", "sn", "spl", "st", "str", 
-		"t", "tch", "th", "tr",
-		"u", "u",
-		"v",
-		"wh",
-		"x",
-		"y",
-		"y",
-		"z"
-	}
-
-	if composer.getVariable("all_sounds_table") == nil then
-		composer.setVariable("all_sounds_table", letters)
-	end
+	letters = composer.getVariable("all_sounds_table")
 
 	for i = 1, 78, 1 do
 

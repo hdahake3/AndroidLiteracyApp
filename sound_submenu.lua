@@ -57,6 +57,24 @@ function scene:create( event )
 						{80, 29},
 						{92, 122}
 					}
+				},
+
+		long = {
+					{
+						{"a", "o"},
+						{"e", "u"},
+						{"i", "u"}
+					},
+					{
+						{"ape", "old"},
+						{"me", "cute"},
+						{"ice", "tuba"}
+					},
+					{
+						{1, 114},
+						{14, 70},
+						{27, 71}
+					}
 				}
 	}
 
@@ -71,7 +89,7 @@ function scene:create( event )
 		boxText.x = (box.x - box.width / 2) + box.width * 0.25
 		scrollView:insert(boxText)
 
-		local boxImage = display.newImage(curScene, "images/" .. soundLetterImages[event.params.menuID][2][1][i] .. ".png", box.x, box.y)
+		local boxImage = display.newImage(curScene, "images/sound_images/" .. soundLetterImages[event.params.menuID][2][1][i] .. ".png", box.x, box.y)
 		boxImage.width = box.width / 1.8
 		boxImage.height = boxImage.width
 		boxImage.x = box.x + box.width * 0.20
@@ -81,13 +99,15 @@ function scene:create( event )
 	for i = 1, #soundLetterImages[event.params.menuID][1][2], 1 do 
 		local box = display.newRoundedRect(curScene, display.actualContentWidth / 2.2 - 10, scrollView.y - 90 + (i - 1) * 135, display.actualContentWidth / 4, (display.actualContentWidth / 4) * (25/31), 10)
 		scrollView:insert(box)
+		box.id = soundLetterImages[event.params.menuID][3][2][i]
+		box:addEventListener("tap", goToSound)
 
 		local boxText = display.newText(curScene, soundLetterImages[event.params.menuID][1][2][i], box.x, box.y, "fonts/ComicNeue-Bold.ttf", 50, "center")
 		boxText:setFillColor(black)
 		boxText.x = (box.x - box.width / 2) + box.width * 0.25
 		scrollView:insert(boxText)
 
-		local boxImage = display.newImage(curScene, "images/" .. soundLetterImages[event.params.menuID][2][2][i] .. ".png", box.x, box.y)
+		local boxImage = display.newImage(curScene, "images/sound_images/" .. soundLetterImages[event.params.menuID][2][2][i] .. ".png", box.x, box.y)
 		boxImage.width = box.width / 1.8
 		boxImage.height = boxImage.width
 		boxImage.x = box.x + box.width * 0.20
@@ -97,13 +117,15 @@ function scene:create( event )
 	for i = 1, #soundLetterImages[event.params.menuID][1][3], 1 do 
 		local box = display.newRoundedRect(curScene, display.actualContentWidth / 1.35 - 10, scrollView.y - 90 + (i - 1) * 135, display.actualContentWidth / 4, (display.actualContentWidth / 4) * (25/31), 10)
 		scrollView:insert(box)
+		box.id = soundLetterImages[event.params.menuID][3][3][i]
+		box:addEventListener("tap", goToSound)
 
 		local boxText = display.newText(curScene, soundLetterImages[event.params.menuID][1][3][i], box.x, box.y, "fonts/ComicNeue-Bold.ttf", 50, "center")
 		boxText:setFillColor(black)
 		boxText.x = (box.x - box.width / 2) + box.width * 0.25
 		scrollView:insert(boxText)
 
-		local boxImage = display.newImage(curScene, "images/" .. soundLetterImages[event.params.menuID][2][3][i] .. ".png", box.x, box.y)
+		local boxImage = display.newImage(curScene, "images/sound_images/" .. soundLetterImages[event.params.menuID][2][3][i] .. ".png", box.x, box.y)
 		boxImage.width = box.width / 1.8
 		boxImage.height = boxImage.width
 		boxImage.x = box.x + box.width * 0.20
