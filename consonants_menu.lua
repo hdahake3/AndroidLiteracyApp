@@ -16,6 +16,11 @@ local function goToAllSounds()
 	composer.gotoScene("all_sounds")
 end
 
+local function goToSoundSubMenu(event)
+	composer.removeScene("consonants_menu")
+	composer.gotoScene("sound_submenu", {params = {menuID = event.target.id}})
+end
+
 function scene:create(event)
 	local sceneGroup = self.view
 
@@ -42,6 +47,18 @@ function scene:create(event)
 	local widthRatio = consonantBackground.width / origWidth
 	local heightRatio = consonantBackground.height / origHeight
 
+	local consonantTypes = {
+		"sounds_beginning",
+		"sounds_ending",
+		"hard_and_soft_c_and_g",
+		"blends_beginning",
+		"blends_ending",
+		"three_letter_blends",
+		"silent",
+		"digraph_pairs_beginning",
+		"digraph_pairs_ending"
+	}
+
 	boxWidths = {410, 360, 510, 400, 360, 390, 210, 530, 480}
 	boxHeights = {75, 72, 63, 59, 60, 62, 60, 60, 60}
 	boxDistance = {36, 37, 35.3, 33.4, 32.2, 31.8, 31.4, 31.1, 31}
@@ -53,6 +70,9 @@ function scene:create(event)
 		listeningRect.height = listeningRect.height * heightRatio
 		listeningRect:setFillColor(black)
 		listeningRect.alpha = 0
+		listeningRect.isHitTestable = true
+		listeningRect.id = consonantTypes[i]
+		listeningRect:addEventListener("tap", goToSoundSubMenu)
 
 	end
 

@@ -299,6 +299,282 @@ function scene:create( event )
 		composer.setVariable("sounds_table", soundImages)
 	end
 
+	soundLetterImages = {
+		short = {
+					{
+						{"a", "i", "u"}, 
+						{"a", "i"}, 
+						{"e", "o"}
+					},
+					{
+						{"bat", "mittens", "bug"},
+						{"ball", "taxi"},
+						{"elf", "fox"}
+					},
+					{
+						{2, 28, 149},
+						{80, 29},
+						{92, 122}
+					}
+				},
+
+		long = {
+					{
+						{"a", "o"},
+						{"e", "u"},
+						{"i", "u"}
+					},
+					{
+						{"ape", "old"},
+						{"me", "cute"},
+						{"ice", "tuba"}
+					},
+					{
+						{1, 114},
+						{14, 70},
+						{27, 71}
+					}
+				},
+
+		pairs = {
+					{
+						{"ai", "ay", "ee", "oi", "ou", "oy"},
+						{"au", "ea", "ew", "oo", "ow"},
+						{"aw", "ea", "oa", "oo", "ow"}
+					},
+					{
+						{"tail", "jay", "bee", "coin", "house", "boy"},
+						{"haul", "eat", "flew", "zoo", "blow"},
+						{"saw", "head", "goat", "cook", "owl"}
+					},
+					{
+						{81, 84, 94, 46, 50, 129},
+						{83, 93, 19, 47, 128},
+						{6, 16, 123, 125, 51}
+					}
+				},
+
+		sounds_of_y = {
+					{
+						{"y"},
+						{"y"},
+						{"ey"}
+					},
+					{
+						{"cry"},
+						{"baby"},
+						{"key"}
+					},
+					{
+						{76},
+						{154},
+						{77}
+					}
+				},
+
+		with_r = {
+					{
+						{"ar", "ir", "ur"},
+						{"ar", "or"},
+						{"er", "or"}
+					},
+					{
+						{"arm", "bird", "burn"},
+						{"bare", "corn"},
+						{"fern", "work"}
+					},
+					{
+						{82, 33, 72},
+						{5, 48},
+						{95, 126}
+					}
+				},
+
+		schwas = {
+					{
+						{"a", "o"},
+						{"e", "u"},
+						{"i"}
+					},
+					{
+						{"sofa", "lion"},
+						{"camel", "bug"},
+						{"rabbit"}
+					},
+					{
+						{3, 45},
+						{15, 149},
+						{106}
+					}
+				},
+
+		sounds_beginning = {
+					{
+						{"b", "f", "j", "m", "q", "t", "x"},
+						{"c", "g", "k", "n", "r", "v", "y"},
+						{"d", "h", "l", "p", "s", "w", "z"}
+					},
+					{
+						{"boy", "fish", "jump", "monkey", "queen", "toe", "excavator"},
+						{"cat", "goose", "key", "noise", "raccoons", "volcano", "yellow"},
+						{"dog", "hug", "love", "puppy", "suitcase", "wagon", "zebra"}
+					},
+					{
+						{7, 97, 111, 116, 55, 44, 152},
+						{9, 22, 34, 118, 133, 150, 153},
+						{90, 26, 113, 52, 134, 73, 155}
+					}
+				},
+
+		sounds_ending = {
+					{
+						{"b", "g", "m", "r", "t"},
+						{"d", "k", "n", "s", "x"},
+						{"f", "l", "p", "s", "z"}
+					},
+					{
+						{"cub", "frog", "swim", "door", "net"},
+						{"bird", "elk", "rain", "bus", "fox"},
+						{"scarf", "owl", "drop", "dogs", "quiz"}
+					},
+					{
+						{85, 100, 39, 56, 67},
+						{13, 112, 41, 57, 75},
+						{20, 36, 130, 135, 78}
+					}
+				},
+
+		hard_and_soft_c_and_g = {
+					{
+						{"c", "g"},
+						{"c", "g"},
+						{"g"}
+					},
+					{
+						{"cat", "frog"},
+						{"celery", "giraffe"},
+						{"goose"}
+					},
+					{
+						{9, 100},
+						{87, 23},
+						{22}
+					}
+				},
+
+		blends_beginning = {
+					{
+						{"bl", "cr", "fr", "pl", "sk", "sn", "sw"},
+						{"br", "dr", "gl", "pr", "sl", "sp", "tr"},
+						{"cl", "fl", "gr", "sc", "sm", "st"}
+					},
+					{
+						{"blow", "crab", "frog", "play", "skate", "snow", "swim"},
+						{"bridge", "draw", "glad", "proud", "sled", "spill", "trunk"},
+						{"claws", "flu", "grapes", "scarf", "small", "stop"}
+					},
+					{
+						{8, 12, 21, 54, 138, 140, 66}, 
+						{86, 91, 102, 132, 139, 63, 147},
+						{89, 98, 103, 58, 62, 142}
+					}
+				}, 
+
+		blends_ending = {
+					{
+						{"ft", "lt", "nk", "st"},
+						{"ld", "mp", "nt"},
+						{"lf", "nd", "sk"}
+					},
+					{
+						{"gift", "colt", "tank", "fast"},
+						{"old", "ump", "ant"},
+						{"elf", "wind", "ask"}
+					},
+					{
+						{99, 38, 120, 65},
+						{114, 40, 43},
+						{115, 119, 61}
+					}
+				},
+
+		three_letter_blends = {
+					{
+						{"scr", "str"},
+						{"spl"},
+						{"spr"}
+					},
+					{
+						{"scrub", "strong"},
+						{"split"},
+						{"spread"}
+					},
+					{
+						{59, 143},
+						{141},
+						{64}
+					}
+				},
+
+		silent = {
+					{
+						{"gh", "wr"},
+						{"kn"},
+						{"sc"}
+					},
+					{
+						{"high", "wrap"},
+						{"knot"},
+						{"scent"}
+					},
+					{
+						{24, 74},
+						{35},
+						{136}
+					}
+				},
+
+		digraph_pairs_beginning = {
+					{
+						{"ch", "wh"},
+						{"sh"},
+						{"th"}
+					},
+					{
+						{"chest", "white"},
+						{"shapes"},
+						{"throne"}
+					},
+					{
+						{10, 151},
+						{137},
+						{68}
+					}
+				},
+
+		digraph_pairs_ending = {
+					{
+						{"ch", "th"},
+						{"ng"},
+						{"sh"}
+					},
+					{
+						{"beach", "moth"},
+						{"wing"},
+						{"bush"}
+					},
+					{
+						{88, 146},
+						{42},
+						{60}
+					}
+				}
+	}
+
+	if composer.getVariable("submenu_table") == nil then
+		composer.setVariable("submenu_table", soundLetterImages)
+	end
+
 	sceneGroup:insert(curScene)
 end
 

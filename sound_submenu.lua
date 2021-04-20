@@ -40,43 +40,7 @@ function scene:create( event )
 	    }
 	)
 
-	soundLetterImages = {
-		short = {
-					{
-						{"a", "i", "u"}, 
-						{"a", "i"}, 
-						{"e", "o"}
-					},
-					{
-						{"bat", "mittens", "bug"},
-						{"ball", "taxi"},
-						{"elf", "fox"}
-					},
-					{
-						{2, 28, 149},
-						{80, 29},
-						{92, 122}
-					}
-				},
-
-		long = {
-					{
-						{"a", "o"},
-						{"e", "u"},
-						{"i", "u"}
-					},
-					{
-						{"ape", "old"},
-						{"me", "cute"},
-						{"ice", "tuba"}
-					},
-					{
-						{1, 114},
-						{14, 70},
-						{27, 71}
-					}
-				}
-	}
+	local soundLetterImages = composer.getVariable("submenu_table")
 
 	for i = 1, #soundLetterImages[event.params.menuID][1][1], 1 do 
 		local box = display.newRoundedRect(curScene, display.actualContentWidth / 6 - 10, scrollView.y - 90 + (i - 1) * 135, display.actualContentWidth / 4, (display.actualContentWidth / 4) * (25/31), 10)

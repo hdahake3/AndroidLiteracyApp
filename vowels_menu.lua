@@ -51,8 +51,8 @@ function scene:create(event)
 		"short", 
 		"long", 
 		"pairs", 
-		"sounds of y", 
-		"with r", 
+		"sounds_of_y", 
+		"with_r", 
 		"schwas"
 	}
 
