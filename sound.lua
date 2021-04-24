@@ -16,12 +16,18 @@ local function goToAllSounds()
 	composer.gotoScene("all_sounds")
 end
 
-local function goToSound(event)
-	composer.removeScene("sound")
-	composer.gotoScene("sound", {params = {soundID = event.target.soundID}})
-end
-
 function scene:create(event)
+	local function goToSound(event2)
+		composer.removeScene("sound")
+		composer.gotoScene("sound", {params = {soundID = event2.target.soundID, prevScene = event.params.prevScene, menuID = event.params.menuID, prevPrevScene = event.params.prevPrevScene}})
+	end
+
+	local function goToPrev()
+		composer.removeScene("sound")
+		composer.gotoScene(event.params.prevScene, {params = {menuID = event.params.menuID, prevScene = event.params.prevPrevScene}})
+	end
+
+
 	local sceneGroup = self.view
 
 	local curScene = display.newGroup()
@@ -34,9 +40,27 @@ function scene:create(event)
 
 
 	local letters = composer.getVariable("all_sounds_table")
+	local phoneme_sounds = composer.getVariable("phoneme_sound_table")
+
+	local phoneme_sound = audio.loadSound("sounds/phoneme_sounds/" .. phoneme_sounds[event.params.soundID])
+
+	local aniScale = 1.1
+
+	local function resetSoundImage(obj)
+		obj:scale(1 / aniScale, 1 / aniScale)
+	end
+
+	local function playPhonemeSound(event2)
+		print(phoneme_sounds[event.params.soundID])
+		audio.play(event2.target.sound)
+		transition.to(event2.target, {xScale = 1.1, yScale = 1.1, onComplete = resetSoundImage})
+	end
 
 	local soundText = display.newText(curScene, letters[event.params.soundID], display.contentCenterX + 30, (display.contentCenterY - display.safeScreenOriginY) / 2.5, "fonts/ComicNeue-Bold.ttf", 100, "center")
 	soundText:setFillColor(black)
+	soundText.sound = phoneme_sound
+	soundText:addEventListener("tap", playPhonemeSound)
+
 
 	print(letters[event.params.soundID])
 
@@ -52,11 +76,21 @@ function scene:create(event)
 
 	soundImages = composer.getVariable("sounds_table")
 
+	local function playSoundSound(event2)
+		audio.play(event2.target.sound)
+		transition.to(event2.target.soundImage, {xScale = aniScale, yScale = aniScale, onComplete = resetSoundImage})
+		transition.to(event2.target.soundImageText, {xScale = aniScale, yScale = aniScale, onComplete = resetSoundImage})
+	end
+
 	for i = 1, 3, 1 do
+		local soundGroup = display.newGroup()
+		curScene:insert(soundGroup)
+
 		local soundImage = display.newImage(curScene, "images/sound_images/" .. soundImages[event.params.soundID][i] .. ".png", display.contentCenterX + 30 + i * display.actualContentWidth * (1 / 4) - display.actualContentWidth * (1 / 2), 
 							(display.contentCenterY - display.safeScreenOriginY) / (3 / 4))
 		soundImage.width = display.actualContentWidth * (1 / 4)
 		soundImage.height = soundImage.width
+
 
 		local soundImageText = display.newText(curScene, soundImages[event.params.soundID][i], soundImage.x, soundImage.y + soundImage.height / 2 + 15, "fonts/ComicNeue-Bold.ttf", 30, "center")
 		while soundImageText.width > soundImage.width do 
@@ -64,6 +98,17 @@ function scene:create(event)
 		end
 
 		soundImageText:setFillColor(black)
+
+		soundGroup:insert(soundImage)
+		soundGroup:insert(soundImageText)
+
+		local soundSound = audio.loadSound("sounds/word_sounds/" .. soundImages[event.params.soundID][i] .. ".mp3")
+		soundGroup.sound = soundSound
+		soundGroup:addEventListener("tap", playSoundSound)
+
+		soundGroup.soundImage = soundImage
+		soundGroup.soundImageText = soundImageText
+
 	end
 
 
@@ -72,7 +117,7 @@ function scene:create(event)
 	local bankButton = display.newImage(curScene, "images/bank.png", display.screenOriginX + 30, curScene.y + 230)
 	local puzzleButton = display.newImage(curScene, "images/puzzle.png", display.screenOriginX + 30, curScene.y + 290)
 
-	backButton:addEventListener("tap", goToAllSounds)
+	backButton:addEventListener("tap", goToPrev)
 	homeButton:addEventListener("tap", goToMenu)
 	bankButton:addEventListener("tap", goToCoin)
 	puzzleButton:addEventListener("tap", goToAllSounds)

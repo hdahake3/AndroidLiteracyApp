@@ -13,12 +13,17 @@ local function goToCoin()
 	composer.gotoScene("coin")
 end
 
-local function goToSound(event)
-	print(event.target.id)
-	composer.gotoScene("sound", {params = {soundID = event.target.id}})
-end
+function scene:create(event)
 
-function scene:create( event )
+	local function goToPrev()
+		composer.removeScene("sound_submenu")
+		composer.gotoScene(event.params.prevScene)
+	end
+
+	local function goToSound(event2)
+		composer.removeScene("sound_submenu")
+		composer.gotoScene("sound", {params = {soundID = event2.target.id, prevScene = "sound_submenu", menuID = event.params.menuID, prevPrevScene = event.params.prevScene}})
+	end
 
 	local sceneGroup = self.view
 
@@ -104,7 +109,7 @@ function scene:create( event )
 	local bankButton = display.newImage(curScene, "images/bank.png", display.screenOriginX + 30, curScene.y + 230)
 	local puzzleButton = display.newImage(curScene, "images/puzzle.png", display.screenOriginX + 30, curScene.y + 290)
 
-	backButton:addEventListener("tap", goToMenu)
+	backButton:addEventListener("tap", goToPrev)
 	homeButton:addEventListener("tap", goToMenu)
 	bankButton:addEventListener("tap", goToCoin)
 

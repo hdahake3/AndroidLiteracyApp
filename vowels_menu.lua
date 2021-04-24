@@ -18,7 +18,7 @@ end
 
 local function goToSoundSubMenu(event)
 	composer.removeScene("vowels_menu")
-	composer.gotoScene("sound_submenu", {params = {menuID = event.target.id}})
+	composer.gotoScene("sound_submenu", {params = {menuID = event.target.id, prevScene = "vowels_menu"}})
 end
 
 function scene:create(event)

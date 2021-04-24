@@ -2,7 +2,7 @@ local composer = require("composer")
 local scene = composer.newScene()
 
 local function goToCoin()
-	composer.removeScene("menu")
+	composer.removeScene("consonants_menu")
 	composer.gotoScene("coin")
 end
 
@@ -12,13 +12,13 @@ local function goToMenu()
 end
 
 local function goToAllSounds()
-	composer.removeScene("menu")
+	composer.removeScene("consonants_menu")
 	composer.gotoScene("all_sounds")
 end
 
 local function goToSoundSubMenu(event)
 	composer.removeScene("consonants_menu")
-	composer.gotoScene("sound_submenu", {params = {menuID = event.target.id}})
+	composer.gotoScene("sound_submenu", {params = {menuID = event.target.id, prevScene = "consonants_menu"}})
 end
 
 function scene:create(event)
