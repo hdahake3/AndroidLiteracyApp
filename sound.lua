@@ -17,6 +17,12 @@ local function goToAllSounds()
 end
 
 function scene:create(event)
+	local function goToPuzzle()
+		composer.removeScene("sound")
+		composer.gotoScene("puzzle", {params = {soundID = event.params.soundID, prevScene = event.params.prevScene, menuID = event.params.menuID, prevPrevScene = event.params.prevPrevScene,
+			puzzlePieceProgress = nil}})
+	end
+
 	local function goToSound(event2)
 		composer.removeScene("sound")
 		composer.gotoScene("sound", {params = {soundID = event2.target.soundID, prevScene = event.params.prevScene, menuID = event.params.menuID, prevPrevScene = event.params.prevPrevScene}})
@@ -74,7 +80,7 @@ function scene:create(event)
 	rightScroll.soundID = event.params.soundID % 155 + 1
 	rightScroll:addEventListener("tap", goToSound)
 
-	soundImages = composer.getVariable("sounds_table")
+	local soundImages = composer.getVariable("sounds_table")
 
 	local function playSoundSound(event2)
 		audio.play(event2.target.sound)
@@ -116,11 +122,13 @@ function scene:create(event)
 	local homeButton = display.newImage(curScene, "images/home.png", display.screenOriginX + 30, curScene.y + 90)
 	local bankButton = display.newImage(curScene, "images/bank.png", display.screenOriginX + 30, curScene.y + 230)
 	local puzzleButton = display.newImage(curScene, "images/puzzle.png", display.screenOriginX + 30, curScene.y + 290)
+	local quizButton = display.newImage(curScene, "images/quiz.png", display.screenOriginX + 30, (bankButton.y - homeButton.y) / 2 + homeButton.y)
 
 	backButton:addEventListener("tap", goToPrev)
 	homeButton:addEventListener("tap", goToMenu)
 	bankButton:addEventListener("tap", goToCoin)
 	puzzleButton:addEventListener("tap", goToAllSounds)
+	quizButton:addEventListener("tap", goToPuzzle)
 
 	sceneGroup:insert(curScene)
 end

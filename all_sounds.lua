@@ -5,6 +5,7 @@ local widget = require("widget")
 
 local function goToSound(event)
 	print(event.target.id)
+	composer.removeScene("all_sounds")
 	composer.gotoScene("sound", {params = {soundID = event.target.id, prevScene = "all_sounds"}})
 end
 
