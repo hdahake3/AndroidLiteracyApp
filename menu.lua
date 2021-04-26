@@ -899,6 +899,10 @@ function scene:create( event )
 		composer.setVariable("puzzle_table", puzzleImages)
 	end
 
+	if composer.getVariable("coins") == nil then
+		composer.setVariable("coins", 10)
+	end
+
 	sceneGroup:insert(curScene)
 end
 

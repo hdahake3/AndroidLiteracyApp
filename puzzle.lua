@@ -49,16 +49,43 @@ function scene:create(event)
 
 	local puzzlePieces = {}
 
+	local puzzlePieceProgressCur = {}
+
+	if event.params.puzzlePieceProgress then
+		puzzlePieceProgressCur = event.params.puzzlePieceProgress
+	end
+
 	for i = 0, 3, 1 do
 		for j = 0, 2, 1 do
 			local puzzleImage = display.newImage(curScene, "images/puzzle-pieces/" .. puzzleImages[event.params.soundID] .. "/row" .. i .. "-col" .. j .. ".png", display.screenOriginX + 190, curScene.y + 190)
 			puzzleImage:scale(0.4, 0.4)
-			puzzleImage.isVisible = false
-			puzzlePieces[3 * i + j + 1] = puzzleImage
+
+			isFound = false
+
+			for k = 1, #puzzlePieceProgressCur, 1 do
+				if puzzlePieceProgressCur[k] == 3 * i + j + 1 then
+					isFound = true
+				end
+			end
+
+			if isFound then 
+				puzzleImage.isVisible = true
+			else 
+				puzzleImage.isVisible = false
+				puzzleImage.id = 3 * i + j + 1
+				puzzlePieces[#puzzlePieces + 1] = puzzleImage
+			end			
+			
 		end
 	end
 
 	print(#puzzlePieces)
+
+	local function goToNextQuestion()
+		composer.removeScene("puzzle")
+		composer.gotoScene("puzzle", {params = {soundID = event.params.soundID, prevScene = event.params.prevScene, menuID = event.params.menuID, prevPrevScene = event.params.prevPrevScene,
+			puzzlePieceProgress = puzzlePieceProgressCur}})
+	end
 
 	local function addPuzzlePieces()
 
@@ -72,8 +99,13 @@ function scene:create(event)
 
 			randomIndex = math.random(#puzzlePieces)
 			puzzlePieces[randomIndex].isVisible = true
+			puzzlePieceProgressCur[#puzzlePieceProgressCur + 1] = puzzlePieces[randomIndex].id
 			table.remove(puzzlePieces, randomIndex)
+
+			coins = composer.setVariable("coins", composer.getVariable("coins") + 1)
 		end
+
+		timer.performWithDelay(2000, goToNextQuestion)
 
 	end
 
