@@ -111,6 +111,12 @@ function scene:create( event )
 	loginButton:scale(0.3, 0.3)
 	loginButton:addEventListener("tap", goToMenu)
 
+	
+	
+	if composer.getVariable("coins") == nil then
+		composer.setVariable("coins", 10)
+	end
+
 	sceneGroup:insert(loginKeys)
 
 end

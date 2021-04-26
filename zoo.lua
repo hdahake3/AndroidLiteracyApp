@@ -28,8 +28,8 @@ function scene:create( event )
 	homeButton:addEventListener("tap", goToLogin)
 
 	local coinBag = display.newImage(curScene, "images/coins.png", display.screenOriginX + display.actualContentWidth - 45, display.screenOriginY + display.actualContentHeight - 45)
-	local coins = composer.getVariable("coins")
-	local coins = display.newText(curScene, coins, coinBag.x, coinBag.y + 14, "Comic Sans MS", 22)
+	
+	local coins = display.newText(curScene, composer.getVariable("coins"), coinBag.x, coinBag.y + 14, "Comic Sans MS", 22)
 	coinBag:scale(0.15, 0.15)
 
 	local headCoins = display.newGroup() 

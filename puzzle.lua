@@ -102,7 +102,7 @@ function scene:create(event)
 			puzzlePieceProgressCur[#puzzlePieceProgressCur + 1] = puzzlePieces[randomIndex].id
 			table.remove(puzzlePieces, randomIndex)
 
-			coins = composer.setVariable("coins", composer.getVariable("coins") + 1)
+			composer.setVariable("coins", composer.getVariable("coins") + 1)
 		end
 
 		timer.performWithDelay(2000, goToNextQuestion)
